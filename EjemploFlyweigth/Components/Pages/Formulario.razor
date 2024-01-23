@@ -1,0 +1,48 @@
+﻿@page "/formulario"
+
+@using EjemploFlyweigth.Domain.Flyweigth
+@using EjemploFlyweigth.Domain.Services
+
+@rendermode InteractiveServer
+
+@inject ApiService ApiService
+
+
+<h2>Add Pokémon</h2>
+
+<form @onsubmit="AddPokemon">
+    <div class="form-group">
+        <label for="apodo">Apodo:</label>
+        <input type="text" id="apodo" @bind="pokemon.Apodo" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="nivel">Nivel:</label>
+        <input type="number" id="nivel" @bind="pokemon.Nivel" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="puntosSalud">Puntos de Salud:</label>
+        <input type="number" id="puntosSalud" @bind="pokemon.PuntosSalud" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="puntosAtaque">Puntos de Ataque:</label>
+        <input type="number" id="puntosAtaque" @bind="pokemon.PuntosAtaque" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="tipoPokemon">Tipo de Pokémon:</label>
+        <input type="text" id="tipoPokemon" @bind="pokemon.TipoPokemon.Nombre" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="tipo">Tipo:</label>
+        <input type="text" id="tipo" @bind="pokemon.TipoPokemon.Tipo" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Añadir Pokémon</button>
+</form>
+
+@code {
+    Pokemon pokemon { get; set; } = new Pokemon();
+    
+    private async Task AddPokemon()
+    {
+        await ApiService.PostPokemon(pokemon);
+    }
+}

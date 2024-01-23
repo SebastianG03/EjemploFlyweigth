@@ -2,33 +2,37 @@
 {
     public class Pokemon : IPokemon
     {
-        public TipoPokemon tipoPokemon { get; set; }
-        public int nivel {  get; set; }
-        public int puntosSalud { get; set; }
-        public int puntosAtaque { get; set; }
+        public TipoPokemon TipoPokemon { get; set; }
+        public string Apodo { get; set; }
+        public int Nivel { get; set; }
+        public int PuntosSalud { get; set; }
+        public int PuntosAtaque { get; set; }
 
+
+        public Pokemon() { }
 
         // Establece la parte extrínseca
-        public Pokemon(int nivel, int puntosSalud, int puntosAtaque, TipoPokemon tipoPokemon)
+        public Pokemon(string apodo, int nivel, int puntosSalud, int puntosAtaque, TipoPokemon tipoPokemon)
         {
-            this.nivel = nivel;
-            this.puntosSalud = puntosSalud;
-            this.puntosAtaque = puntosAtaque;
-            this.tipoPokemon = tipoPokemon;
+            Apodo = apodo;
+            Nivel = nivel;
+            PuntosSalud = puntosSalud;
+            PuntosAtaque = puntosAtaque;
+            TipoPokemon = tipoPokemon;
         }
 
         public void MostrarInformacion()
         {
 
-            Console.WriteLine($"Tipo de Pokemon: {tipoPokemon}");
+            Console.WriteLine($"Tipo de Pokemon: {TipoPokemon}");
         }
 
 
         public void MostrarInformacionBatalla()
         {
 
-            Console.WriteLine($"Nivel: {nivel}, Puntos de Salud: {puntosSalud}, Puntos de Ataque: {puntosAtaque}");
+            Console.WriteLine($"Nivel: {Nivel}, Puntos de Salud: {PuntosSalud}, Puntos de Ataque: {PuntosAtaque}");
         }
     }
-
 }
+

@@ -1,46 +1,46 @@
-﻿
-@page "/pokemonlist"
-@using EjemploFlyweigth.Domain.Flyweigth
-@using EjemploFlyweigth.Domain.Services
+﻿@page "/pokemons"
 
+
+@using EjemploFlyweigth.Domain
+@using EjemploFlyweigth.Domain.Services
 
 @rendermode InteractiveServer
 
-<h3>Lista de Pokémon</h3>
+@inject ApiService ApiService
+
+<h1>Pokémon List</h1>
 
 <table class="table">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Ataque</th>
-            <th>Defensa</th>
-            <th>Tipo</th>
+            <th>Nombre</th>
+            <th>Apodo</th>
+            <th>Nivel</th>
+            <th>Puntos de Salud</th>
+            <th>Puntos de Ataque</th>
+            <th>Tipo de Pokémon</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (Pokemon pokemon in listaPokemon)
+        @foreach (var pokemon in Pokemons)
         {
             <tr>
-                <td>@pokemon.puntosSalud</td>
-                <td>@pokemon.puntosAtaque</td>
-                <td>@pokemon.nivel</td>
-                <td>@pokemon.tipoPokemon.nombre | @pokemon.tipoPokemon.tipo</td>
+                <td>@pokemon.Nombre</td>
+                <td>@pokemon.Apodo</td>
+                <td>@pokemon.Nivel</td>
+                <td>@pokemon.Ps</td>
+                <td>@pokemon.Pp</td>
+                <td>@pokemon.Tipo</td>
             </tr>
         }
     </tbody>
 </table>
 
 @code {
-    List<Pokemon> listaPokemon = new List<Pokemon>();
+    List<PokemonServiceModel> Pokemons = new List<PokemonServiceModel>();
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        /*listaPokemon = new List<Pokemon>();
-         * 
-        IPokemon pokemon1 = PokemonFactory.ObtenerPokemon("Pikachu", "eléctrico") as Pokemon;
-        IPokemon pokemon2 = PokemonFactory.ObtenerPokemon("Pikachu", "eléctrico") as Pokemon;
-
-        listaPokemon.Add(pokemon1 as Pokemon);
-        listaPokemon.Add(pokemon2 as Pokemon);*/
+        Pokemons = await ApiService.GetPokemons();
     }
 }
