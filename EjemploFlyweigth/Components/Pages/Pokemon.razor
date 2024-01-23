@@ -1,0 +1,46 @@
+﻿
+@page "/pokemonlist"
+@using EjemploFlyweigth.Domain.Flyweigth
+@using EjemploFlyweigth.Domain.Services
+
+
+@rendermode InteractiveServer
+
+<h3>Lista de Pokémon</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ataque</th>
+            <th>Defensa</th>
+            <th>Tipo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Pokemon pokemon in listaPokemon)
+        {
+            <tr>
+                <td>@pokemon.puntosSalud</td>
+                <td>@pokemon.puntosAtaque</td>
+                <td>@pokemon.nivel</td>
+                <td>@pokemon.tipoPokemon.nombre | @pokemon.tipoPokemon.tipo</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    List<Pokemon> listaPokemon = new List<Pokemon>();
+
+    protected override void OnInitialized()
+    {
+        /*listaPokemon = new List<Pokemon>();
+         * 
+        IPokemon pokemon1 = PokemonFactory.ObtenerPokemon("Pikachu", "eléctrico") as Pokemon;
+        IPokemon pokemon2 = PokemonFactory.ObtenerPokemon("Pikachu", "eléctrico") as Pokemon;
+
+        listaPokemon.Add(pokemon1 as Pokemon);
+        listaPokemon.Add(pokemon2 as Pokemon);*/
+    }
+}
