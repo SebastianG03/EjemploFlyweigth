@@ -1,4 +1,5 @@
 ﻿using EjemploFlyweigth.Domain.Flyweigth;
+using EjemploFlyweigth.Domain.Models;
 using System.Net.Http;
 
 namespace EjemploFlyweigth.Domain.Services
@@ -7,7 +8,7 @@ namespace EjemploFlyweigth.Domain.Services
     {
         private readonly HttpClient client = new HttpClient();
         private static ApiService? instance;
-        private readonly String _url = "https://pokemonapi20240123161306.azurewebsites.net/";
+        private readonly String _url = "https://pokemonapi20240123161306.azurewebsites.net/api/Pokemon";
 
         private ApiService() { }
 
@@ -35,7 +36,7 @@ namespace EjemploFlyweigth.Domain.Services
             }
         }
 
-        public async Task<bool> PostPokemon(Pokemon pokemon)
+        public async Task<bool> PostPokemon(PokemonModel pokemon)
         {
             try
             {

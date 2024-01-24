@@ -3,8 +3,8 @@
     public class TipoPokemon : ITipoPokemon
     {
         // Parte intrínseca
-        public string nombre { get; }
-        public string tipo { get; }
+        public string nombre { get; set; }
+        public string tipo { get; set; }
 
 
         public TipoPokemon(string nombre, string tipo)

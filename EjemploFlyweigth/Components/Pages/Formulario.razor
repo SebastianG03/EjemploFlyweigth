@@ -1,14 +1,11 @@
 ﻿@page "/formulario"
 
-@using EjemploFlyweigth.Domain.Flyweigth
 @using EjemploFlyweigth.Domain.Services
+@using EjemploFlyweigth.Domain.Models
 
 @rendermode InteractiveServer
 
-@inject ApiService ApiService
-
-
-<h2>Add Pokémon</h2>
+<h2>Añadir Pokémon</h2>
 
 <form @onsubmit="AddPokemon">
     <div class="form-group">
@@ -28,21 +25,21 @@
         <input type="number" id="puntosAtaque" @bind="pokemon.PuntosAtaque" class="form-control" required />
     </div>
     <div class="form-group">
-        <label for="tipoPokemon">Tipo de Pokémon:</label>
-        <input type="text" id="tipoPokemon" @bind="pokemon.TipoPokemon.Nombre" class="form-control" required />
+        <label for="tipoPokemon">Nombre del Pokémon:</label>
+        <input type="text" id="tipoPokemon" @bind="pokemon.TipoPokemon.nombre" class="form-control" required />
     </div>
     <div class="form-group">
         <label for="tipo">Tipo:</label>
-        <input type="text" id="tipo" @bind="pokemon.TipoPokemon.Tipo" class="form-control" required />
+        <input type="text" id="tipo" @bind="pokemon.TipoPokemon.tipo" class="form-control" required />
     </div>
     <button type="submit" class="btn btn-primary">Añadir Pokémon</button>
 </form>
 
 @code {
-    Pokemon pokemon { get; set; } = new Pokemon();
+    PokemonModel pokemon { get; set; } = new PokemonModel();
     
     private async Task AddPokemon()
     {
-        await ApiService.PostPokemon(pokemon);
+        await ApiService.Singleton().PostPokemon(pokemon);
     }
 }

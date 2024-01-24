@@ -1,12 +1,11 @@
 ﻿@page "/pokemons"
+@using EjemploFlyweigth.Domain.Models
 
 
 @using EjemploFlyweigth.Domain
 @using EjemploFlyweigth.Domain.Services
 
 @rendermode InteractiveServer
-
-@inject ApiService ApiService
 
 <h1>Pokémon List</h1>
 
@@ -41,6 +40,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Pokemons = await ApiService.GetPokemons();
+        Pokemons = await ApiService.Singleton().GetPokemons();
     }
 }
