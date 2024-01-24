@@ -6,7 +6,7 @@
         public string nombre { get; set; }
         public string tipo { get; set; }
 
-
+        public TipoPokemon() { }
         public TipoPokemon(string nombre, string tipo)
         {
 
